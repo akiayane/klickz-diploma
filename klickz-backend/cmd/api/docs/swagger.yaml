@@ -1,0 +1,202 @@
+definitions:
+  data.File:
+    properties:
+      createdTime:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      path:
+        type: string
+      type:
+        type: string
+    type: object
+  data.Healthcheck:
+    properties:
+      environment:
+        type: string
+      status:
+        type: string
+      version:
+        type: string
+    type: object
+  data.LoginUserViaEmail:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  data.LoginUserViaEmailValidationError:
+    properties:
+      error:
+        $ref: '#/definitions/data.LoginUserViaEmail'
+    type: object
+  data.RegisterUser:
+    properties:
+      address:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      surname:
+        type: string
+    type: object
+  data.RegisterUserValidationError:
+    properties:
+      error:
+        $ref: '#/definitions/data.RegisterUser'
+    type: object
+  data.SimplePayload:
+    properties:
+      payload:
+        type: string
+    type: object
+  main.SimpleError:
+    properties:
+      error:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: Swagger API for gin backend template.
+  title: gin-api-template Swagger API
+  version: "1.0"
+paths:
+  /files/upload/{fileName}:
+    post:
+      consumes:
+      - application/json
+      description: Send as binary file and write name of the file in the URL
+      parameters:
+      - description: File data
+        in: body
+        name: file
+        required: true
+        schema:
+          $ref: '#/definitions/data.File'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/main.SimpleError'
+      summary: Uploading files
+  /healthcheck:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/data.Healthcheck'
+      summary: Retrieves application status
+  /users/login/email:
+    post:
+      consumes:
+      - application/json
+      description: Send email and pass to get JWT
+      parameters:
+      - description: Login data
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/data.LoginUserViaEmail'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/data.SimplePayload'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/main.SimpleError'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/data.LoginUserViaEmailValidationError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/main.SimpleError'
+      summary: Auth via Email
+  /users/register/new:
+    post:
+      consumes:
+      - application/json
+      description: Send all data about user, except photo_id. Plz exclude id, createdTime
+        and photo_id fields in request
+      parameters:
+      - description: User data
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/data.RegisterUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "406":
+          description: Not Acceptable
+          schema:
+            $ref: '#/definitions/main.SimpleError'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/data.RegisterUserValidationError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/main.SimpleError'
+      summary: User creation
+  /users/userdata:
+    get:
+      description: use JWT token to identify users email and respond with data related
+        to  this user
+      parameters:
+      - description: Login data
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/data.LoginUserViaEmail'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/data.SimplePayload'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/main.SimpleError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/main.SimpleError'
+      summary: Get user data with get request
+swagger: "2.0"
