@@ -1,0 +1,35 @@
+<div style="width: 100%;height:100%;background-color:white;display: flex;flex-direction: column;padding: 2.5%;">
+    <h1>Профиль</h1>
+    <hr> 
+    <h2>Аватар</h2>
+    <div class="avatar">
+        <label [ngClass]="[url ? 'notpointer' : 'pointer']" class="hoverable" for="fileInput">
+            <img [src]="[url ? url : 'https://www.w3schools.com/howto/img_avatar.png']" class="rounded-circle img-fluid" style="width: 100%;object-fit: cover;"> 
+            <div [ngClass]="[url ? 'notshow' : 'hover-text']">Choose file</div>
+            <div [ngClass]="[url ? 'notshow' : 'background']"></div>         
+        </label>
+        <button id="delete" class="btn" [disabled]="!url" [ngClass]="[url ? 'not-trans' : 'trans']" (click)="delete()">Убрать</button>
+        <input *ngIf="!url" id="fileInput" type='file' (change)="onSelectFile($event)">
+    </div> 
+    <hr> 
+    <h2>Логин</h2>
+    <input type="text" style="width: 60%;" (ngModelChange)="change()" [(ngModel)]="login" disabled class="form-control" placeholder="логин">
+    <br>
+    <h2>E-mail</h2>
+    <input type="text" style="width: 60%;" (ngModelChange)="change()" [(ngModel)]="email" class="form-control" placeholder="почта">
+    <hr> 
+    <h2>Личная информация</h2>
+    <label class="labels">Имя:</label><input type="text" style="width: 60%;" (ngModelChange)="change()" [(ngModel)]="name" class="form-control" placeholder="first name">  
+    <br>
+    <label class="labels">Фамилия:</label><input type="text" style="width: 60%;" (ngModelChange)="change()" [(ngModel)]="surname" class="form-control" placeholder="surname">
+    <br>
+    <label class="labels">Номер телефона:</label><input type="text" style="width: 60%;" disabled class="form-control" placeholder="Ваш номер телефона" value="{{phone}}">      
+
+    
+        
+    <button *ngIf="changes" class="btn btn-primary" style="color: white; align-self: flex-end;background-color: #22305E;" (click)="exit()" type="button">Сохранить</button>
+        
+        
+        
+    
+</div>

@@ -1,0 +1,183 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$klickz-primary: mat.define-palette(mat.$indigo-palette);
+$klickz-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$klickz-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$klickz-theme: mat.define-light-theme((
+  color: (
+    primary: $klickz-primary,
+    accent: $klickz-accent,
+    warn: $klickz-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($klickz-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.dialog{
+  max-width: 100vw !important;
+}
+
+.link{
+  max-width: 100vw !important;
+  background: transparent;
+  box-shadow: none;
+  // filter:blur(8px);
+  // -webkit-filter: blur(8px);
+}
+
+.dialog .mat-dialog-container{
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+
+
+.dialog .mat-dialog-container .mat-dialog-content{
+  margin: 0;
+  padding: 0;
+  //height: 100vh;
+  width: 100%;
+  overflow: hidden;
+
+  .mat-form-field{
+    height: 100%;
+    overflow-y: auto;
+
+    .mat-form-field-wrapper{
+      padding: 0;
+      height: 100%;
+      overflow-y: auto;
+
+      .mat-form-field-flex{
+        height: 100%;
+
+        .mat-form-field-infix{
+          height: 100%;
+        }
+      }
+      .mat-form-field-underline{
+        display: none;
+      }
+    }
+  }
+
+  .displayname.mat-form-field{
+    .mat-form-field-wrapper{
+      padding: 0;
+      overflow-y: hidden;
+
+      .mat-form-field-flex{
+        padding: 0;
+
+        .mat-form-field-infix{
+          height: 100%;
+        }
+      }
+      .mat-form-field-underline{
+        display: none;
+      }
+    }
+
+  }
+}
+
+.linkname .mat-form-field .mat-form-field-wrapper .mat-form-field-flex{
+  padding: 0;
+
+  .mat-form-field-infix{
+    padding: 0;
+    border: 0 !important;
+  }
+}
+
+.dialog .mat-dialog-container .mat-dialog-actions{
+  margin: 0;
+  padding: 0;
+}
+
+#tags {
+  .mat-form-field-wrapper{
+      padding: 0rem !important;
+      border: 0.05rem solid black;
+      border-radius: 0.25rem;
+      height: 100% !important;
+      background-color: white;
+
+      .mat-form-field-flex{
+        padding: 0 !important;
+        padding-left: 0.5rem !important;
+
+        .mat-form-field-infix {
+          padding: 0.5rem 0 !important; 
+        }
+      }
+
+      .mat-form-field-underline{
+        width: 0 !important;
+      }
+  }
+  
+  
+}
+
+
+.line {
+  fill: none !important;
+  stroke: #000;
+}
+
+.smallGraph .line{
+  stroke: rgb(58, 121, 255);
+}
+
+.invite .mat-dialog-container{
+  width: 33vw !important;
+  height: 70vh !important;
+  padding: 0;
+  border-radius: 2rem;
+}
+
+.disabled{
+  color: white;
+  background-color: rgb(187, 66, 66);
+}
+
+.restored{
+  color: white;
+  background-color: rgb(48, 180, 48);
+}
+
+#cdk-overlay-3{
+  width: 40%;
+}

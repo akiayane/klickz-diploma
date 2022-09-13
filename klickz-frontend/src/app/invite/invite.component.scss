@@ -1,0 +1,70 @@
+.card {
+    width: 100%;
+    background-color: #efefef;
+    border: none;
+    transition: all 0.5s;
+    
+}
+
+#avatar{
+    border-radius: 50%;
+    width: 100%;
+
+}
+
+.image img {
+    transition: all 0.5s
+}
+
+.card:hover .image img {
+    //transform: scale(1.1);
+}
+
+.back {
+    width: 50%;
+    border-radius: 50%
+}
+
+.name {
+    font-size: 22px;
+    font-weight: bold
+}
+
+.idd {
+    font-size: 14px;
+    font-weight: 600
+}
+
+.idd1 {
+    font-size: 12px
+}
+
+.number {
+    font-size: 22px;
+    font-weight: bold
+}
+
+.follow {
+    font-size: 12px;
+    font-weight: 500;
+    color: #444444
+}
+
+.text span {
+    font-size: 13px;
+    color: #545454;
+    font-weight: 500
+}
+
+.icons i {
+    font-size: 19px
+}
+
+.join {
+    font-size: 1rem;
+    color: black;
+}
+
+.date {
+    background-color: #ccc
+}

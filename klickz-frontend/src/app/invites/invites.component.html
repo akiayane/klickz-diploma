@@ -1,0 +1,17 @@
+<div style="width: 100%;height:100%;background-color:white;display: flex;flex-direction: column;padding: 2.5%;">
+    <h1>Приглашения</h1>
+    <hr> 
+    <p>Ваши приглашения</p>
+    
+    <!-- <input type="text" style="width: 60%;" [readonly]="true" class="form-control" placeholder="ваш API ключ"  value="{{Api}}">
+    <br>
+    <button class="btn" style="background: rgb(99, 39, 120);box-shadow: none;border: none;color: white;width: 60%;" (click)="generate()" type="button">Создать</button> -->
+
+    
+    <mat-selection-list class="listOfPeople" #shoes [multiple]="false">
+        <mat-list-option *ngFor="let invite of pendingLinks" [value]="invite" (click)="openDialog(invite)">
+          {{this.format(invite.link.createdTime)}}
+        </mat-list-option>
+    </mat-selection-list>
+
+</div>

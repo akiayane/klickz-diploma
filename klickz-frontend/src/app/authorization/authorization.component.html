@@ -1,0 +1,77 @@
+<div class="wrapper fadeInDown m-0">
+    <!-- <div id="formContent" *ngIf="showLogin">
+      <div class="fadeIn first">
+        <div><h2>Авторизация</h2></div>
+      </div>
+        <input type='text' [(ngModel)]="login" class="fadeIn second" id='email' placeholder='Почта'>
+
+        <input type='password' [(ngModel)]="password" class="fadeIn third" id='password' placeholder='Пароль'>
+        <input type="button" (click)="onSubmit(login, password)" id='btn-login' class="fadeIn fourth" value="Войти">
+      <div id="formFooter">
+       
+        <button (click)="switch()">Регистрация</button>
+      </div>
+    </div> -->
+
+    <div class="scene scene--card">
+      <div class="card" #card>
+        <div class="card__face card__face--front fadeIn first d-flex">
+          <div style="width: 50%; background-image: url('https://img3.goodfon.com/wallpaper/nbig/d/c8/nature-spring-forest-park-6807.jpg');background-position: center; background-repeat: no-repeat; background-size: cover;">
+
+          </div>
+          <div id="formContent" style="-webkit-border-radius: 0rem 2rem 2rem 0rem;border-radius: 0rem 2rem 2rem 0rem;background:linear-gradient(-45deg, #9E34BE, #6E34CB, #348CBE, #34CBC2);">
+            <div><h2>Авторизация</h2></div>
+            <input type='text' [(ngModel)]="login" id='email' placeholder='Почта'>
+            <input type='password' [(ngModel)]="password" id='password' placeholder='Пароль'>
+            <input type="button" (click)="onSubmit(login, password)" id='btn-login' value="Войти">
+              <div id="formFooter" style="-webkit-border-radius: 0rem 0rem 2rem 0rem;border-radius: 0rem 0rem 2rem 0rem;">
+                <button class="btn" (click)="switch()">Регистрация</button>
+              </div>
+            </div>
+        </div>
+        <div class="card__face card__face--back fadeIn first d-flex">
+          <div id="formContent" style="-webkit-border-radius: 2rem 0rem 0rem 2rem;border-radius: 2rem 0rem 0rem 2rem;background:linear-gradient(-45deg, #348CBE, #34CBC2, #9E34BE, #6E34CB);">
+          <div><h2>Регистрация</h2></div>
+          <input type='text' [(ngModel)]="login" id='email' placeholder='Имя'>
+          <input type='password' [(ngModel)]="password" id='password' placeholder='Пароль'>
+          <input type='tel' [(ngModel)]="phone" id='phone' maxlength="11" placeholder='Телефон'>
+
+          <!-- <form class="registration">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <input type="text" [(ngModel)]="login" id='email' name="link" matInput [formControl]="linkFormControl" [errorStateMatcher]="matcher" placeholder="Имя">
+              <mat-error *ngIf="linkFormControl.hasError('minLength') && !linkFormControl.hasError('required')">
+               Минимум 6 символов
+              </mat-error>
+              <mat-error *ngIf="linkFormControl.hasError('required')">
+                Введите <strong>имя</strong>
+              </mat-error>
+            </mat-form-field>
+          </form> -->
+
+          <input type="button" [disabled]="!this.login || this.login.length < 6 || !this.password || this.password.length < 6 || !this.phone || this.phone.length < 11" (click)="register(login, password, phone)" id='btn-login' value="Войти" style="background-color: #6070ff">
+          <label style="font-size:1rem;color: white;">Логин и пароль должны содержать минимум 6 символов.</label>
+            <div id="formFooter" style="-webkit-border-radius: 0rem 0rem 0rem 2rem;border-radius: 0rem 0rem 0rem 2rem;">
+              <button class="btn" (click)="switch()">Авторизация</button>
+            </div>
+          </div>
+          <div style="width: 50%; background-image: url('https://posta-magazine.ru/wp-content/uploads/2020/09/main_sounds-of-the-forest_posta-magazine.jpg');background-position: center; background-repeat: no-repeat; background-size: cover;">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div id="formContent" *ngIf="!showLogin">
+        <div class="fadeIn first">
+          <div><h2>Регистрация</h2></div>
+        </div>
+          <input type='text' [(ngModel)]="login" class="fadeIn second" id='email' placeholder='Имя'>
+          <input type='password' [(ngModel)]="password" class="fadeIn third" id='password' placeholder='Пароль'>
+          <input type='tel' [(ngModel)]="phone" class="fadeIn fourth" id='phone' placeholder='Телефон'>
+          <input type="button" (click)="register(login, password, phone)" id='btn-login' class="fadeIn fourth" value="Войти">
+        <div id="formFooter">
+          
+          <button class="btn" (click)="switch()">Авторизация</button>
+        </div>
+      </div> -->
+  </div>
+  

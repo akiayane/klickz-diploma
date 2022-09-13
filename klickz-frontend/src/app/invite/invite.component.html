@@ -1,0 +1,47 @@
+<!-- <label class="labels">Полный адрес:</label>
+<input type="text" style="width: 60%;" disabled class="form-control" placeholder="Ваш номер телефона" value="{{data.linkdata.link.address}}">  -->
+
+
+<div class="container p-0 d-flex justify-content-center" style="height: 100%;border-radius: 2rem;">
+    <div class="card py-3" style="border-radius: 2rem;">
+        <div class=" image d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
+            <button class="btn back btn-secondary"> <img src="https://www.w3schools.com/howto/img_avatar.png" id="avatar"/></button>
+            <span class="name mt-3">{{data.linkdata.user.name}} {{data.linkdata.user.surname}}</span> <span class="idd">{{data.linkdata.user.email}}</span>
+            <div class=" px-2 rounded mt-4 date "> <span class="join">Дата присоединения: {{format(data.linkdata.user.createdTime)}}</span>
+            </div> 
+            <br>
+            <div class="row" style="width: 60%;">
+                <div class="col-md-4 p-0 d-flex align-items-center">
+                    <h3 class="m-0">Адрес:</h3>
+                </div>
+                <div class="col-md-8 p-0">
+                    <a href="{{data.linkdata.link.address}}" style="text-decoration: none;" target="_blank">
+                        <input type="text" disabled class="form-control" value="{{data.linkdata.link.address}}">
+                    </a>
+                </div>
+            </div>
+            <br>
+
+            <div class="row" style="width: 60%;">
+                <div class="col-md-4 p-0 d-flex align-items-center">
+                    <h3 class="m-0">Создано:</h3>
+                </div>
+                <div class="col-md-8 p-0">
+                    <input type="text" disabled class="form-control" value="{{formatInvite(data.linkdata.link.createdTime)}}">
+                </div>
+            </div>
+
+            <div class="row" style="width: 60%;padding-top: 5%;">
+                <div class="col-md-6 p-0 d-flex align-items-center justify-content-center">
+                    <button class="btn btn-success" (click)="accept(data.linkdata.link.id)">Принять</button>
+                </div>
+                <div class="col-md-6 p-0 d-flex align-items-center justify-content-center">
+                    <button class="btn btn btn-danger">Удалить</button>
+                </div>
+            </div>
+            
+            
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<!-- <mat-tab-group dynamicHeight>
+    <mat-tab label="First">
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+            First
+          </ng-template>
+    </mat-tab>
+</mat-tab-group>
+<router-outlet></router-outlet> -->
+
+  <nav mat-tab-nav-bar [tabPanel]="tabPanel" class="navbar">
+    <!-- <p class="m-0" style="display: flex;align-items: center;left: 5%;position: absolute;height: 100%;font-size: 1.8rem;">Здравствуйте, </p> -->
+    <a mat-tab-link *ngFor="let link of links; index as i" [disabled]="cooldown" [routerLink]="link" (click)="activeLink = link;this.cooldown = true; cd()" [active]="activeLink == link"> {{titles[i]}}</a>
+  </nav>
+  <mat-tab-nav-panel #tabPanel>
+    <div [@triggerName]="prepareRoute(outlet)">
+      <canvas id="c"></canvas>
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
+  </mat-tab-nav-panel>
+

@@ -1,0 +1,18 @@
+<div class="container p-sm-5 h-100 d-flex flex-column justify-content-center" id="screen">
+	<code-input  [(ngModel)]="code"
+              [isNonDigitsCode]="false"
+              [codeLength]="4"
+              (codeChanged)="onCodeChanged($event)"
+              (codeCompleted)="onCodeCompleted($event)">
+  </code-input>
+  <!--<div *ngIf="login_message!=null">{{this.login_message}}</div>-->
+  <br><br>
+  <span class="badge text-wrap text-secondary" style="font-size: 1rem;">
+    Вам должен придти звонок, введите последние 4 цифры номера<br><br>
+    В случае задержки звонка более 1 минуты, повторите запрос звонка
+
+    <div class="mt-3">
+      <button type='button' class="btn btn-primary" [disabled]='!timerCheck' (click)="reCall()">Позвонить</button>
+    </div>
+  </span>
+</div>

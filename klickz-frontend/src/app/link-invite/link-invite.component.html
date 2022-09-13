@@ -1,0 +1,21 @@
+
+<div mat-dialog-content id="invite_window" style="font-size: 1.5rem;text-align:center;height:100%;display:flex;flex-direction:column;justify-content:space-between">
+  <p>Поиск пользователей по логину</p>
+  <form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
+      <mat-label>Логин</mat-label>
+      <input type="text"
+             aria-label="Логин"
+             matInput
+             [formControl]="myControl"
+             [matAutocomplete]="auto"
+             (input)="search($event)">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="invite(option)">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>
+

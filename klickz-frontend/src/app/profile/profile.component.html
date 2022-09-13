@@ -1,0 +1,159 @@
+<div class="main">
+    <!-- <div style="border-radius: 2rem; height: 100%;">
+        <div class="row profiledetails">
+            <div class="col-md-7" style="border-radius: 2rem; background-color:white;-webkit-box-shadow: 0px 5px 10px 5px rgba(34, 60, 80, 0.2);
+            -moz-box-shadow: 0px 5px 10px 5px rgba(34, 60, 80, 0.2);
+            box-shadow: 0px 5px 10px 5px rgba(34, 60, 80, 0.2);">
+                <div class="avatar">
+                    <label [ngClass]="[url ? 'notpointer' : 'pointer']" class="hoverable" for="fileInput">
+                        <img [src]="[url ? url : 'https://www.w3schools.com/howto/img_avatar.png']" class="rounded-circle img-fluid" style="width: 100%;"> 
+                        <div [ngClass]="[url ? 'notshow' : 'hover-text']">Choose file</div>
+                        <div [ngClass]="[url ? 'notshow' : 'background']"></div>         
+                    </label>
+                    <button id="delete" [disabled]="!url" [ngClass]="[url ? 'not-trans' : 'trans']" (click)="delete()">Убрать</button>
+                    <input *ngIf="!url" id="fileInput" type='file' (change)="onSelectFile($event)">
+                </div>  
+                <div style="height: 50%;padding-left: 5%;padding-right: 5%;">
+                    <div class="row">
+                        <div class="col-md-6">
+                             <label class="labels">Имя:</label><input type="text" (ngModelChange)="change()" [(ngModel)]="name" class="form-control" placeholder="first name">  
+                        </div>
+                        <div class="col-md-6">
+                             <label class="labels">Фамилия:</label><input type="text" (ngModelChange)="change()" [(ngModel)]="surname" class="form-control" placeholder="surname">
+                        </div> 
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col-md-6">
+                            <label class="labels">Номер телефона:</label><input type="text" disabled class="form-control" placeholder="Ваш номер телефона" value="{{phone}}">   
+                        </div>
+                        <div class="col-md-6 d-flex justify-content-end flex-column">
+                            <label class="labels">E-mail:</label><input type="text" (ngModelChange)="change()" [(ngModel)]="email" class="form-control" placeholder="почта">
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col-md-12 d-flex justify-content-end flex-column">
+                            <label class="labels">ID:</label><input type="text" disabled value="{{id}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <label class="labels">API Ключ:</label>
+                            <div class="input-group">
+                                <input type="text" [readonly]="true" class="form-control" placeholder="ваш API ключ"  value="{{Api}}">
+                                <button class="btn" style="background: rgb(99, 39, 120);box-shadow: none;border: none;color: white;" (click)="generate()" type="button">Создать</button>
+                            </div>
+                    </div>
+                    <div class="row pt-5">
+                        <div class="col-md-3">
+                            <button [disabled]="!changes" class="btn profile-button" style="color: white;" (click)="exit()" type="button">Сохранить</button>
+                        </div>
+                        <div class="col-md-6"></div>
+                        <div class="col-md-3">
+                            <button class="btn profile-button" style="color: white;" (click)="exit()" type="button">Выйти</button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col"></div>
+                
+            <div class="col-md-4 p-0" *ngIf="pendingLinks.length != 0" style="border-radius: 2rem; background-color:white;-webkit-box-shadow: 0px 5px 10px 5px rgba(34, 60, 80, 0.2);
+            -moz-box-shadow: 0px 5px 10px 5px rgba(34, 60, 80, 0.2);
+            box-shadow: 0px 5px 10px 5px rgba(34, 60, 80, 0.2);">
+                <div class="p-4" style="height: 10%;width: 100%;background-color: lightgrey;border-radius: 2rem 2rem 0rem 0rem">
+                    <h1>Приглашения:</h1>
+                </div>
+
+                <div class="d-flex justify-content-center align-items-center flex-column" style="height: 90%;">
+                    <div class="p-3 py-5" style="height: 50%;width: 100%;">
+                        <mat-selection-list class="listOfPeople" #shoes [multiple]="false">
+                            <mat-list-option *ngFor="let shoe of pendingLinks" [value]="shoe">
+                              {{this.format(shoe.link.createdTime)}}
+                            </mat-list-option>
+                        </mat-selection-list>
+                
+                    </div>
+                    <div class="p-3 py-5" style="height: 50%;width: 100%;">
+                        <div *ngIf="shoes.selectedOptions.selected[0]?.value.link.address != null" class="p-5 d-flex flex-column justify-content-between" style="border: 0.25rem solid black;border-radius: 1rem;height: 100%;">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    Адрес:
+                                </div>
+                                <div class="col-md-9">
+                                    <input style="margin: 0;padding: 0;width: 100%" disabled value="{{shoes.selectedOptions.selected[0]?.value.link.address}}">
+                                </div>
+                            </div>
+                            <div *ngIf="shoes.selectedOptions.selected[0]?.value.user.name != ''" class="row">
+                                <div class="col-md-3">
+                                    Имя:
+                                </div>
+                                <div class="col-md-9">
+                                    {{shoes.selectedOptions.selected[0]?.value.user.name}}
+                                </div>
+                            </div>
+                            <div *ngIf="shoes.selectedOptions.selected[0]?.value.user.surname != ''" class="row">
+                                <div class="col-md-3">
+                                    Фамилия:
+                                </div>
+                                <div class="col-md-9">
+                                    {{shoes.selectedOptions.selected[0]?.value.user.surname}}
+                                </div>
+                            </div>
+                            <div *ngIf="shoes.selectedOptions.selected[0]?.value.user.email != ''" class="row">
+                                <div class="col-md-3">
+                                    E-mail:
+                                </div>
+                                <div class="col-md-9">
+                                    {{shoes.selectedOptions.selected[0]?.value.user.email}}
+                                </div>
+                            </div>
+                            <div *ngIf="shoes.selectedOptions.selected[0]?.value.user.phone != ''" class="row">
+                                <div class="col-md-3">
+                                    Телефон:
+                                </div>
+                                <div class="col-md-9">
+                                    {{shoes.selectedOptions.selected[0]?.value.user.phone}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button class="btn btn-primary profile-button" (click)="accept(shoes.selectedOptions.selected[0]?.value.link.id)" type="button">Принять</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="shoes.selectedOptions.selected[0]?.value.link.address == null" class="p-2"style="border: 0.25rem solid black;border-radius: 1rem;height: 100%;background-color: lightgrey;">
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+
+            <div class="col-md-4 p-0 d-flex justify-content-center align-items-center flex-column" *ngIf="pendingLinks.length == 0" style="border-radius: 2rem; background-color:white;">
+                <div class="p-4" style="height: 10%;width: 100%;background-color: lightgrey;border-radius: 2rem 2rem 0rem 0rem">
+                    <h1>Приглашения:</h1>
+                </div>
+                <div class="d-flex justify-content-center align-items-center flex-column" style="height: 90%;">
+                    <h1>Пока пусто</h1>
+                    <mat-icon class="icon-display">schedule</mat-icon>
+                </div>
+            </div>
+        </div>
+
+       
+    </div> -->
+
+    <div style="height:95vh;width: 70%;display: flex;">
+        <div style="height:100%;width: 30%;background-color: rgba(255,255,255,0.8);">
+            <nav id="profile-nav" mat-tab-nav-bar style="display:flex;flex-direction: column;" [tabPanel]="profile">
+                <a mat-tab-link *ngFor="let link of links; index as i" [routerLink]="link" (click)="activeLink = link" [active]="activeLink == link"> {{titles[i]}}</a>
+            </nav>
+        </div>
+        <div style="height:100%;width: 70%;background: transparent;">
+            <mat-tab-nav-panel #profile style="height: 100%;">
+                <div [@triggerName]="prepareRoute(outlet)" style="height: 100%;">
+                  <router-outlet #outlet="outlet"></router-outlet>
+                </div>
+            </mat-tab-nav-panel>
+        </div>
+    </div>
+</div>

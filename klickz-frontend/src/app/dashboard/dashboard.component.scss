@@ -1,0 +1,13 @@
+body{
+  max-width: 100vw;
+  max-height: 100vh;
+}
+.head{
+  display: flex;
+  flex-direction: column;
+
+  .cards{
+    display: flex;
+    justify-content: space-evenly;
+  }
+}

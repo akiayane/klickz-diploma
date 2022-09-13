@@ -1,0 +1,25 @@
+<div class="main pt-5 px-5">
+    <div class="content text-center" style="border-radius: 0.75rem;background:rgba(255, 255, 255, 0.2)">
+            <p class="firstLine">Создайте новую ссылку</p>
+
+            <!-- <input class="InputStyle" placeholder="Ваша ссылка" [(ngModel)]="link" name="link" ngDefaultControl style="font-family:Arial, FontAwesome;text-align: center;" type="text"> -->
+            
+            <form class="example-form" style="width: 80%;">
+                <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
+                  <mat-label style="color: white;">Создайте новую ссылку</mat-label>
+                  <input type="text" [(ngModel)]="link" name="link" matInput [formControl]="linkFormControl" [errorStateMatcher]="matcher" placeholder="Пример: https://youtube.com">
+                  <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                  <mat-error *ngIf="linkFormControl.hasError('pattern') && !linkFormControl.hasError('required')">
+                   Введите полный адрес ссылки
+                  </mat-error>
+                  <mat-error *ngIf="linkFormControl.hasError('required')">
+                    Ссылка <strong>некорректна</strong>
+                  </mat-error>
+                </mat-form-field>
+            </form>
+            
+            <button type="button" class="btn btn-lg" style="background-color: #FFA500;color:white" [disabled]="!link || linkFormControl.hasError('pattern') && !linkFormControl.hasError('required')" (click)="submit(link)">Создать</button>
+                <!-- <p class="firstLine"> E &nbsp; M &nbsp; A &nbsp; I &nbsp; L &nbsp; . &nbsp; M &nbsp; E </p> -->
+                
+    </div>
+</div>

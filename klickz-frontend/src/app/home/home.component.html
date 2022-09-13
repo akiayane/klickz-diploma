@@ -1,0 +1,362 @@
+  <header id="header" class="header fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+        <!-- <i class="bi bi-hand-index pe-3" style="transform: scale(1.6);"></i> -->
+        <span>Klickz</span>
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li *ngIf="status"><button class="btn status-button" [ngClass]="available ? 'unavailable' : 'available'">
+            {{status.status}}
+            </button></li>
+          <li><a class="nav-link scrollto active" href="#hero">Главная</a></li>
+          <li><a class="nav-link" href="/documentation">Документация</a></li>
+          <li><a class="nav-link scrollto" href="#about">О проекте</a></li>
+          <li><a class="nav-link scrollto" href="#features">Особенности сервиса</a></li>
+          <li><a class="nav-link scrollto" href="#pricing">Цена</a></li>
+
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero d-flex align-items-center" style="position: relative;">
+    <app-buildings></app-buildings>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 d-flex flex-column justify-content-center">
+          <h1 style="line-height: 100%;" data-aos="fade-up">Стабильное и масштабируемое решение для вашего бизнеса!</h1>
+          <h2 data-aos="fade-up" data-aos-delay="400">Попробуйте наш сервис который поможет вам лучше узнать поведение вашей аудитории</h2>
+          <div data-aos="fade-up" data-aos-delay="600">
+            <div class="text-center text-lg-start">
+              <!-- <button class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                <span>Начать</span>
+                <i class="bi bi-arrow-right"></i>
+              </button> -->
+              <a href="#authorization" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                <span>Начать</span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
+          <!-- <app-buildings></app-buildings> -->
+        </div>
+      </div>
+    </div>
+
+  </section><!-- End Hero -->
+
+  <main id="main">
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+
+      <div class="container" data-aos="fade-up">
+        <div class="row gx-0">
+
+          <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+            <div class="content">
+              <h3>О проекте</h3>
+              <h2>Наш сервис поможет вам получить развернутую статистику о том, куда пользователи переходят из вашего ресурса</h2>
+              <p>
+                Используя наш веб-сайт вы сможете создать уникальную ссылку, переходы по которой вы сможете увидеть в своем личном кабинете в режиме реального времени. 
+                А удобные графики и таблицы помогут вам понять поведение вашей аудитории.
+              </p>
+              <!-- <div class="text-center text-lg-start">
+                <a href="#" class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
+                  <span>Read More</span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div> -->
+            </div>
+          </div>
+
+          <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+            <img src="./assets/img/about.jpg" class="img-fluid" alt="">
+          </div>
+
+        </div>
+      </div>
+
+    </section><!-- End About Section -->
+
+    <!-- ======= Features Section ======= -->
+    <section id="features" class="features">
+
+      <div class="container" data-aos="fade-up">
+
+        <header class="section-header">
+          <h2>Особенности</h2>
+          <p>Для нас важно, что бы вы знали, почему вам стоит довериться именно нам</p>
+        </header>
+
+                <!-- Feature Icons -->
+                <div class="row feature-icons" data-aos="fade-up">
+        
+                  <div class="row">
+        
+                    <div class="col-xl-4 text-center" data-aos="fade-right" data-aos-delay="100">
+                      <img src="./assets/img/features-3.png" class="img-fluid p-4" alt="">
+                    </div>
+        
+                    <div class="col-xl-8 d-flex content">
+                      <div class="row align-self-center gy-4">
+        
+                        <div class="col-md-6 icon-box" data-aos="fade-up">
+                          <i class="ri-line-chart-line"></i>
+                          <div>
+                            <h4>Нулевой downtime</h4>
+                            <p>Наши сервисы доступны всегда и работают без остановок.</p>
+                          </div>
+                        </div>
+        
+                        <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
+                          <i class="ri-stack-line"></i>
+                          <div>
+                            <h4>Доступный и понятный интерфейс</h4>
+                            <p>Вам потребуется всего минута, что бы создать уникальную ссылку.</p>
+                          </div>
+                        </div>
+        
+                        <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
+                          <i class="ri-brush-4-line"></i>
+                          <div>
+                            <h4>Техническая интеграция</h4>
+                            <p>Воспользуйтесь документацией нашего API и интегрируйте наш сервис в ваши системы.</p>
+                          </div>
+                        </div>
+        
+                        <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
+                          <i class="ri-magic-line"></i>
+                          <div>
+                            <h4>QR-коды</h4>
+                            <p>Создайте QR-код и отслеживайте переходы по нему.</p>
+                          </div>
+                        </div>
+        
+                        <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
+                          <i class="ri-command-line"></i>
+                          <div>
+                            <h4>Делитесь статистикой</h4>
+                            <p>Получайте всю необходимую вам информацию на одной странице. Вы можете поделиться правами на просмотр статистики с другими пользователями, или же экспортировать ее в удобном вам формате.</p>
+                          </div>
+                        </div>
+        
+                        <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="500">
+                          <i class="ri-radar-line"></i>
+                          <div>
+                            <h4>Круглосуточная поддержка</h4>
+                            <p>Пишите нам в любое время!</p>
+                          </div>
+                        </div>
+        
+                      </div>
+                    </div>
+        
+                  </div>
+        
+                </div><!-- End Feature Icons -->
+
+        <!-- Feature Tabs -->
+        <div class="row feture-tabs" data-aos="fade-up">
+          <div class="col-lg-6">
+            <h3>Мы ценим ваше время, поэтому сделали процесс пользования сервисом очень простым и понятным.</h3>
+
+            <!-- Tabs -->            
+            <mat-tab-group>
+              <mat-tab label="Начните прямо сейчас"><br>Зарегистрируйтесь на веб-сайте используя ваш номер телефона, и вы сможете сразу же приступить к использованию сервиса. 
+                Зайдя в личный кабинет, вы сразу же увидите предложение о создании новой ссылки. После этого, сервис направит вас на страницу
+                где вы сможете видеть статистику по переходам в режиме реального времени.</mat-tab>
+              <mat-tab label="Статистика"><br>В личном кабинете у вас будет возможность не только наблюдать за статистикой, вы так же сможете делиться ею, поделившись правами на просмотр, 
+                или же экспортировав ее в формате CSV или JSON.</mat-tab>
+              <mat-tab label="Как это работает?"><br>После того как вы создадите укороченную ссылку, мы сохраним ее изначальный адрес. После того, как пользователь перейдет по укороченной ссылке 
+                на наш сервер, мы сохраним информацию о его переходе, и направим его по изначальному адресу. 
+                При создании сервиса мы уделили большое внимание оптимизации и скорости перехода, поэтому ваши пользователи не заметят никаких задержок.</mat-tab>
+            </mat-tab-group>
+            <!-- End Tabs -->
+
+            <!-- Tab Content -->
+
+
+          </div>
+
+          <div class="col-lg-6">
+            <img src="./assets/img/features-2.png" class="img-fluid" alt="">
+          </div>
+
+        </div><!-- End Feature Tabs -->
+
+      </div>
+
+    </section><!-- End Features Section -->
+
+    <section id="ip" class="ip d-flex align-items-center">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 d-flex flex-column justify-content-center">
+            <h1 style="line-height: 100%;" data-aos="fade-up" style="font-size: 2rem;font-weight: 700;">Воспользуйтесь нашей системой</h1>
+            <h2 data-aos="fade-up" data-aos-delay="400">Зарегистрируйтесь и пользуйтесь или ознакомтесь с документацией</h2>
+            <br>
+            <div data-aos="fade-up" data-aos-delay="600">
+              <div class="text-center d-flex text-lg-start">
+                <a href="#authorization" style="margin-right: 5%;">
+                  <button class="btn btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center" style="background-color: rgb(0,149,229);color:white;border-radius:0.1rem;padding: 1rem;border-radius: 1rem;">
+                    <span>Начать</span>
+                  </button>
+                </a>
+                <a href="/documentation">
+                  <button class="btn btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center" style="background-color: rgb(143, 163, 173);color:white;border-radius:0.1rem;padding: 1rem;border-radius: 1rem;">
+                    <span>Документация</span>
+                  </button>
+                </a>
+                <!-- <a href="#authorization" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                  <span>Начать</span>
+                </a> -->
+              </div>
+            </div>
+          </div>
+          <div *ngIf="ipData" class="col-lg-6 d-flex flex-column" data-aos="zoom-out" data-aos-delay="200" style="border-radius: 0.25rem;background-image: radial-gradient(62.24% 62.24% at 50% 50%,#1e283a 68.83%,#293344 100%);">
+            <div style="padding: 1rem;">
+              <input type="text" class="ip form-control" value="{{this.ip}}" disabled style="color:white;background: transparent;border-color: rgb(75,83,97);font-weight: 600;font-size: 1.3rem;">
+            </div>
+            <div style="color: rgb(156 213 138);padding: 1rem;padding-left: 1.75rem;">
+              <ul class="iplist">
+                <li><span>city:&nbsp;</span>"{{ipData.city}}"<span>,</span></li>
+                <li><span>region:&nbsp;</span>"{{ipData.region}}"<span>,</span></li>
+                <li><span>country:&nbsp;</span>"{{ipData.countryLong}}"</li>
+                <li><span>zipcode:&nbsp;</span>"{{ipData.countryShort}}"<span>,</span></li>
+                <li><span>latitude:&nbsp;</span>"{{ipData.latitude}}"<span>,</span></li>
+                <li><span>longitude:&nbsp;</span>"{{ipData.longitude}}"<span>,</span></li>
+                <li><span>zipcode:&nbsp;</span>"{{ipData.zipcode}}"<span>,</span></li>
+                <li><span>timezone:&nbsp;</span>"{{ipData.timezone}}"<span>,</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </section>
+
+
+    <!-- ======= Pricing Section ======= -->
+    <!-- <section id="pricing" class="pricing">
+
+      <div class="container" data-aos="fade-up">
+
+        <header class="section-header">
+          <p>Цена</p>
+        </header>
+
+        <div class="row gy-4" data-aos="fade-left">
+
+          <div class="col-lg-6 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+            <div class="box">
+              <h3 style="color: #07d5c0;">Базовый план</h3>
+              <div class="price"><sup>₸</sup>0<span> в месяц</span></div>
+              <img src="./assets/img/pricing-free.png" class="img-fluid" alt="">
+              <ul>
+                <li>Неограниченное количество ссылок</li>
+                <li>Неограниченное количество переходов</li>
+                <li>Развернутая статистика</li>
+                <li>Возможность делиться правами на просмотр</li>
+                <li class="na">Интеграция через API</li>
+                <li class="na">Полная статистика</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+            <div class="box">
+              <h3 style="color: #ff0071;">Ultimate План</h3>
+              <div class="price"><sup>₸</sup>9990<span> в месяц</span></div>
+              <img src="./assets/img/pricing-ultimate.png" class="img-fluid" alt="">
+              <ul>
+                <li>Неограниченное количество ссылок</li>
+                <li>Неограниченное количество переходов</li>
+                <li>Развернутая статистика</li>
+                <li>Возможность делиться правами на просмотр</li>
+                <li>Интеграция через API</li>
+                <li>Полная статистика</li>
+              </ul>
+              
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section> -->
+    <!-- End Pricing Section -->
+    <a id="authorization"></a>
+      <app-authorization></app-authorization>
+
+
+
+
+
+
+  </main><!-- End #main -->
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-5 col-md-12 footer-info">
+            <a href="index.html" class="logo d-flex align-items-center">
+              <!-- <i class="bi bi-hand-index pe-3" style="transform: scale(1.6);"></i> -->
+              <span>Klickz</span>
+            </a>
+            <p>Стабильное и масштабируемое решение для вашего бизнеса!</p>
+            <!-- <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div> -->
+          </div>
+
+          <div class="col-lg-2 col-6 footer-links">
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> <a href="">Главная</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#about">О проекте</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#features">Особенности сервиса</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#pricing">Цена</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-6 footer-links">
+
+          </div>
+
+          <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+            <h4>Свяжитесь с нами!</h4>
+            <p>
+              <strong>Email:</strong> klickz@gmail.com<br>
+            </p>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Klic.kz</span></strong>. All Rights Reserved
+      </div>
+    
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-circle" style="color: #22305E;"></i></a>

@@ -1,0 +1,515 @@
+.main{
+    height: 100%;
+    min-height: 100%;
+    //background-color: #F3F3F3 !important;
+    // animation: gradient 120s ease infinite;
+    // background: linear-gradient(-45deg, #9E34BE, #6E34CB, #348CBE, #34CBC2);
+    // background-size: 400% 400%;
+
+
+    .content{
+        display: flex;
+        height: 92.25vh;
+        margin: 0.5rem;
+        //background-color: rgba($color: #ffffff, $alpha: 0.4);
+        border-radius: 1rem;
+
+        
+    }
+
+    
+}
+
+
+
+.icons i {
+    color: #b5b3b3;
+    border: 1px solid #b5b3b3;
+    padding: 6px;
+    margin-left: 4px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .activity-done {
+    font-weight: 600;
+  }
+  
+  .list-group li {
+    //margin-bottom: 12px;
+  }
+  
+  .list-group-item {
+  }
+  
+  .list.active li {
+    list-style: none;
+    width: 110%;
+    height: 10rem;
+    border: 1px solid #e3dada;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+    border-radius: 0.75rem;
+    //background-image: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.5), rgba(255,0,0,0));
+    //background-color: grey;
+  }
+
+  .list.inactive li {
+    list-style: none;
+    width: 110%;
+    height: 10rem;
+    border: 1px solid #e3dada;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+    border-radius: 0.75rem;
+    //background-image: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.5), rgba(255,0,0,0));
+    //background-color: grey;
+  }
+  
+  .checkicon {
+    color: green;
+    font-size: 19px;
+  }
+  
+  .date-time {
+    font-size: 12px;
+  }
+  
+  .profile-image img {
+    margin-left: 3px;
+  }
+
+  .hide{
+    display: none;
+  }
+
+  .disabledbackground{
+    background-color: rgba(160, 158, 158, 0.8);
+  }
+
+  :host ::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    background-color: #4989c5;
+  }
+
+  :host ::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+      background-color: #4989c5;
+  }
+
+  :host ::ng-deep .mat-form-field .mat-label {
+    color: rgb(32, 180, 32);
+  }
+
+
+  .linksholder{
+    scrollbar-color: #d4aa70 #e4e4e4;
+    scrollbar-width: thin;
+  }
+  
+  .linksholder::-webkit-scrollbar {
+    width: 20px;
+    border: none;
+    padding-right: 0 !important;
+  }
+  
+  .linksholder::-webkit-scrollbar-track {
+    //background-color: #e4e4e4;
+    background: transparent;
+    padding-right: 0 !important;
+    //border-radius: 0.5rem;
+    margin-top: 0.25rem;
+    //margin-left: 50%;
+  }
+  
+  .linksholder::-webkit-scrollbar-thumb {
+    border-radius: 5rem;
+    border: 5px solid transparent;
+    background-clip: content-box;
+    background-color: white;
+  }
+
+  #linechart{
+    //padding: 1.5rem;
+  }
+
+  .link-boundary{
+    overflow: hidden;
+  }
+
+  canvas{
+      // height: 100%;
+      // width: 100%;
+      // background-color: rgba(255, 255, 255, 0.2);
+      //padding: 5%;
+  }
+
+  .bookmark{
+    background-color: #D9F1F8;
+    margin: 0;
+    border-radius: 0.25rem 0rem 0rem 0.25rem;
+  }
+
+  .bookmark:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .blurred{
+    filter: blur(8px);
+    -webkit-filter: blur(8px)
+  }
+
+// .spinner{
+//     height: 100%;
+//     width: 100%;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+
+// :host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+//     stroke: rgb(75, 192, 192);
+// }
+
+// :host ::ng-deep .mat-progress-bar-buffer {
+//     background: lightgrey ;
+// }
+
+// :host ::ng-deep .mat-progress-bar-fill::after {
+//     background-color: rgb(75, 192, 192);
+// }
+
+// :host ::ng-deep .mat-paginator {
+//     background: transparent;
+//     color: black;
+//     //FBFAF5
+// }
+
+// :host ::ng-deep .mat-paginator-page-size {
+//     display: none;
+// }
+
+// :host ::ng-deep .mat-paginator-container {
+//     padding: 0;
+//     min-height: 0;
+//     justify-content: flex-start;
+// }
+
+// .show {
+//     height: 100% !important;
+//     display: table;
+// }
+
+// .notshow {
+//     height: 0% !important;
+//     display: none;
+// }
+
+// .icons i {
+//     color: #b5b3b3;
+//     border: 1px solid #b5b3b3;
+//     padding: 6px;
+//     margin-left: 4px;
+//     border-radius: 5px;
+//     cursor: pointer
+// }
+
+// .activity-done {
+//     font-weight: 600
+// }
+
+// .list-group li {
+//     margin-bottom: 12px
+// }
+
+// .list li {
+//     list-style: none;
+//     padding: 10px;
+//     border: 1px solid #e3dada;
+//     margin-top: 12px;
+//     border-radius: 5px;
+//     background: black
+// }
+
+// .checkicon {
+//     color: green;
+//     font-size: 19px
+// }
+
+// .date-time {
+//     font-size: 12px
+// }
+
+// .profile-image img {
+//     margin-left: 3px
+// }
+
+// .panel{
+//     //background: linear-gradient(to left, #2980b9, #486485);
+//     padding: 0;
+//     border-radius: 10px;
+//     //border: 0.2rem solid black ;
+//     -webkit-box-shadow: 0px 5px 10px 5px rgba(34, 60, 80, 0.2);
+//     -moz-box-shadow: 0px 5px 10px 5px rgba(34, 60, 80, 0.2);
+//     box-shadow: 0px 5px 10px 5px rgba(34, 60, 80, 0.2);
+//     display:flex;
+//     flex-direction:column;
+//     height: 100%;
+//     min-height: inherit;
+
+//     background-color: white;
+// }
+
+// .panel-holder{
+//     max-height: 95vh;
+//     min-height: 40vh;
+//     height: 49.5%;
+// }
+
+// .panel .panel-body{
+//     padding: 0;
+//     height: 100%;
+//     overflow: hidden;
+// }
+
+// .graph-holder{
+//     // min-height: 100%;
+//     // max-height: 100%;
+//     height: 90vh;
+//     width: 40%;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+// }
+
+
+// .panel .panel-heading{
+//     padding: 1rem 0.5rem;
+//     //border-radius: 10px 10px 0 0;
+//     margin: 0;
+// }
+// .panel .panel-heading .title{
+//     color: black;
+//     font-size: 28px;
+//     font-weight: 500;
+//     text-transform: capitalize;
+//     line-height: 40px;
+//     margin: 0;
+// }
+// .panel .panel-heading .btn{
+//     color: black;
+//     background: transparent;
+//     font-size: 16px;
+//     text-transform: capitalize;
+//     border: 2px solid black ;
+//     border-radius: 50px;
+//     transition: all 0.3s ease 0s;
+//     padding-bottom: 0;
+// }
+// .panel .panel-heading .btn:hover{
+//     color: black;
+//     text-shadow: 3px 3px rgba(255,255,255,0.2);
+// }
+// .panel .panel-heading .form-control{
+//     color: black;
+//     background-color: transparent ;
+//     width: 70%;
+//     height: 40px;
+//     border: 0.2rem solid lightgrey;
+//     border-radius: 20px;
+//     display: inline-block;
+//     transition: all 0.3s ease 0s;
+// }
+// .panel .panel-heading .form-control:focus{
+//     //background-color: lightgrey;
+
+//     box-shadow: none;
+//     outline: none;
+// }
+// .panel .panel-heading .form-control::placeholder{
+//     color: black;
+//     font-size: 15px;
+//     font-weight: 500;
+// }
+// .panel .panel-body .table thead tr th{
+//     color: black;
+//     //background-color: rgba(255, 255, 255, 0.5);2pxnot
+//     min-width: 1rem;
+//     font-size: 16px;
+//     font-weight: 500;
+//     text-transform: uppercase;
+//     padding: 1rem;
+//     border: none;
+// }
+// .panel .panel-body .table tbody tr td{
+//     color: black;
+//     font-size: 15px;
+//     padding: 10px 12px;
+//     vertical-align: middle;
+//     border: none;
+// }
+// .details{
+//     width: 50%;
+// }
+// .panel .panel-body .details tbody tr td:last-child{
+//     //border-right: 1px solid grey !important;
+// }
+// .panel .panel-body .details thead tr th:last-child{
+//     //border-right: 1px solid grey !important;
+// }
+// .panel .panel-body .table tbody tr{
+//     background-color: rgba(255, 255, 255, 0.2);
+// }
+// .panel .panel-body .table tbody tr:nth-child(even){ background-color: rgba(255,255,255,0.05); }
+// .panel .panel-body .table tbody .action-list{
+//     padding: 0;
+//     margin: 0;
+//     list-style: none;
+// }
+// .panel .panel-body .table tbody .action-list li{
+//     display: inline-block;
+//     margin: 0 5px;
+// }
+// .panel .panel-body .table tbody .action-list li a{
+//     color: black;
+//     font-size: 15px;
+//     position: relative;
+//     z-index: 1;
+//     transition: all 0.3s ease 0s;
+// }
+
+// .pagination li a:hover{
+//     color: black;
+//     background-color: transparent;
+//     border-color: rgba(255,255,255,0.2);
+// }
+// .pagination li a:focus,
+// .pagination li.active a,
+// .pagination li.active a:hover{
+//     color: black;
+//     background-color: transparent;
+//     border-color: black;
+// }
+// .pagination li:first-child a,
+// .pagination li:last-child a{
+//     border-radius: 50%;
+// }
+// .panel-heading{
+//     //background: linear-gradient(to right, rgba(255, 255, 255, 0.034), rgba(255, 255, 255, 0.5));
+// }
+// @media only screen and (max-width:767px){
+//     .panel .panel-heading .title{
+//         text-align: center;
+//         margin: 0 0 10px;
+//     }
+//     .panel .panel-heading .btn_group{ text-align: center; }
+// }
+
+// .btn_group{
+//   display: flex;
+//   justify-content: flex-end;
+// }
+
+// .table td, th{
+//   text-align:center;
+//   overflow-wrap: none;
+//   word-wrap: normal;
+// }
+
+// .table>:not(:first-child) {
+//     border-top: 1px solid grey;
+// }
+
+// .table tr:last-child td{
+//     border-bottom: none;
+// }
+
+// .fill { 
+//     min-height: 100%;
+//     height: 100%;
+// }
+
+// .h-80{
+//   height: 80% !important;
+// }
+
+// .flex-grow {
+//     flex: 1 0 auto;
+// }
+
+// .list-group-item{
+//   flex-grow: 1;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   font-size: 1rem;
+//   border-radius: 0;
+// }
+
+// .list-group-item a{
+//   width:100%;
+//   display: flex;
+//   text-decoration:none;
+// }
+
+// .list-group-item .fa{
+//   font-size: 1.5rem;
+// }
+
+// .list-group .active a{
+//   color: black ;
+// }
+
+// .list-group-item:hover {
+//     background-color: #f5f5f5;
+// }
+
+// .list-group-item.active:hover {
+//     background-color: #599BFC;
+//     border-color:transparent;
+// }
+
+
+
+// .table{
+//     margin: 0 !important;
+//     color: black ;
+//     font-size: 1.5rem;
+//     vertical-align: middle !important;
+//     height: 100%;
+// }
+
+// :host ::ng-deep .ng-star-inserted{
+//     height: 20%;
+//     max-height: 20%;
+// }
+
+// // :host ::ng-deep .ng-star-inserted .tableSkeleton{
+// //     height: 100%;
+// // }
+
+// .table > thead {
+//     vertical-align: middle;
+//     height: 5vh;
+//     max-height: 5vh;
+//     min-height: 5vh;
+
+//     th:nth-child(1){
+//         width: 15%;
+//         max-width: 15%;
+//         min-width: 15%;
+//     }
+
+//     th:nth-child(2){
+//         width: 70%;
+//         max-width: 70%;
+//         min-width: 70%;
+//     }
+
+//     th:nth-child(3){
+//         width: 15%;
+//         max-width: 15%;
+//         min-width: 15%;
+//     }
+// }

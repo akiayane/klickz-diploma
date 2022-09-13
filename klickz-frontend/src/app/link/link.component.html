@@ -1,0 +1,213 @@
+
+<div class="main">
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <!-- <div class="rounded">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3 linkname">           
+                      <h1 mat-dialog-title>Название:
+                          <mat-form-field style="padding: 0;">
+                            <input matInput value="{{data.name}}" disabled="true">
+                          </mat-form-field>
+                      </h1>
+                    </div>
+                    <div class="row mt-2">
+                      <mat-label class="linkname fs-5">
+                        <mat-form-field style="padding: 0;">
+                          <input matInput value="{{data.address}}" disabled="true">
+                        </mat-form-field>
+                      </mat-label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?data=http://klic.kz/l/{{data.name}}&amp;size=100x100" alt="" title="qr" style="height: 100%;width: 100%;padding: 5%;" />
+            </div>
+        </div>
+        <div class="row">
+          <div>
+            <canvas id="pieChart" #pieChart></canvas>
+          </div>
+          <div>
+            <canvas id="lineChart" #lineChart></canvas>
+          </div>
+        </div>
+      </div> -->
+      <div class="d-flex flex-column" style="height: 100%;">
+        <div class="d-flex" style="height: 100%;">
+          <div class="d-flex p-1" style="width: 60%;">
+            <div class="card p-4 background">
+              <div class="card-body p-0">
+                
+                <div style="height: 50%;display: flex;flex-direction: column;justify-content: space-between;">
+
+                  <div style="display: flex;justify-content: space-between;">
+                    <div style="display: flex;flex-direction:column;">
+                      <!-- <h1 style="font-weight: 600;">{{data.name}}</h1> -->
+                      <h2 class="card-subtitle mb-2 text-muted">Отображаемое имя:</h2>
+                      <input matRipple type="text" class="form-control" value="{{data.name}}" aria-describedby="basic-addon1">
+                      
+                      <h2 class="card-subtitle mb-2 text-muted">Новая ссылка:</h2>
+                      <button class="form-control" style="text-align: left;" [cdkCopyToClipboard]="newlink" (click)="openSnackBar('Ссылка скопирована','','success');">
+                        http://klic.kz/l/{{data.name}}
+                      </button>
+                      <!-- <input (click)="copyInputMessage('http://klic.kz/l/{{data.name}}')" type="text" class="form-control" style="background-color: white;" value="klic.kz/l/{{data.name}}" aria-describedby="basic-addon1"> -->
+                      <br>
+                      <h2 class="card-subtitle mb-2 text-muted">Время создания:</h2>
+                      <h2 style="color: white;">{{createdTime}}</h2>
+                      <h2 class="card-subtitle mb-2 text-muted">Оригинальный адрес:</h2>
+                    </div>
+                    <div style="width: 20%;">
+                      <img src="https://api.qrserver.com/v1/create-qr-code/?data=http://klic.kz/l/{{data.name}}&amp;size=100x100" alt="" title="qr" style="width: 100%;" />
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <input disabled type="text" class="form-control" value="{{data.address}}" aria-describedby="basic-addon1">
+                  </div> 
+                  <div style="flex: 1;align-items:center;display:flex;justify-content: space-between;">
+                    <div style="height: 100%;display: flex;">
+                      <button class="action_button" style="height: 100%;border:none;background: transparent;color:white">
+                        <mat-icon>share</mat-icon>
+                      </button>
+                      <button class="action_button" style="height: 100%;border:none;background: transparent;color:white" (click)="openDialog()">
+                        <mat-icon>group_add</mat-icon>
+                      </button>
+                      <div style="height: 100%;position: relative;display: flex;justify-content: center;align-items: center;">
+                        <mat-icon style="position: absolute;color:white;">cloud_download</mat-icon>
+                        <angular2csv mat-button class="action_button btn" [data]="alldata" [options]="options" style="z-index: 2;opacity: 0;"></angular2csv>
+                      </div>
+
+                        
+                      
+                    
+                    </div>
+                    
+                    <div style="height: 100%;display: flex;color:white" >
+                      <div *ngFor="let user of localusers" style="flex-direction: column;display: flex;align-items: center;justify-content: flex-end;overflow:auto;">
+                        <img [src]="[user.photoUrl!='0' ? 'https://klic.kz/web'+user.photoUrl : 'https://www.w3schools.com/howto/img_avatar.png']" class="rounded-circle img-fluid" style="width: 5rem;"> 
+                        <h1 style="margin: 0;">{{user.login}}</h1>
+                      </div>
+                        
+                     
+                    </div>
+                  </div>
+
+                </div>
+                <div style="height: 50%;">
+                  <!-- <div style="height: 100%;width:50%;background-image: url(https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png);background-size: 100% 100%;">
+
+                  </div> -->
+
+                </div>
+                
+
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex flex-column p-1" id="graphs">
+            
+            <div style="height: 100%;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
+              <div class="modal-dialog" style="overflow-y: scroll;height:100%;margin:0;max-width: none;" > 
+                  <div class="modal-content" style="height: 100%;"> 
+                      <div class="modal-body background">
+                        <button class="btn" style="float: right;color:white" (click)="onNoClick()"><mat-icon>exit_to_app</mat-icon></button>
+                        <div class="card" style="width: 100%; height: 50vh;border: 0;background: transparent;">
+                          <div class="card-body p-0">
+                            <input matInput style="display: none;">
+                            <div [ngClass]="[isLoaded ? '' : 'notshow']" style="height: 100%;padding: 5%;">
+                              <canvas id="regions"></canvas>
+                            </div>
+            
+                            <div [ngClass]="[!isLoaded ? '' : 'notshow']" class="spinner">
+                              <mat-spinner></mat-spinner>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card" style="width: 100%; height: 50vh;border: 0;background: transparent;">
+                          <div class="card-body p-0">
+                            <div [ngClass]="[isLoaded ? '' : 'notshow']" style="height: 100%;padding: 5%;">
+                              <canvas id="SlineChart"></canvas>
+                            </div>
+                            
+                            <div [ngClass]="[!isLoaded ? '' : 'notshow']" class="spinner">
+                              <mat-spinner></mat-spinner>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="card" style="width: 100%; height: 50vh;border: 0;background: transparent;">
+                          <div class="card-body p-0">
+                            <div [ngClass]="[isLoaded ? '' : 'notshow']" style="height: 100%;padding: 5%;">
+                              <canvas id="devices"></canvas>
+                            </div>
+                            
+                            <div [ngClass]="[!isLoaded ? '' : 'notshow']" class="spinner">
+                              <mat-spinner></mat-spinner>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <div class="card" style="width: 100%; height: 50vh;border: 0;">
+                          <div class="card-body p-0">
+                            
+                          </div>
+                        </div> -->
+                      </div> 
+                  </div> 
+              </div> 
+          </div> 
+            
+          </div>
+          
+        </div>
+        <!-- <div class="d-flex p-1"  style="height: 30%; width: 100%;display: none;">
+          <mat-tab-group style="width:100%;border:0;height: 100%;">
+            <mat-tab label="Действия">
+              <div class="d-flex" style="height: 80%;">
+                <div class="card" style="width: 100%;height: 100%;">
+                  <div class="card-body d-flex justify-content-between" style="background-color: lightgrey;">
+                    
+                      <button mat-button class="btn btn-primary profile-button" (click)="onNoClick()">Сохранить</button>
+                      <angular2csv mat-button class="csv btn btn-primary profile-button" [data]="alldata" [options]="options" *ngIf="loaded"></angular2csv>
+                    
+                  </div>
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab label="Владельцы">
+              <div class="d-flex" style="height: 80%; overflow: hidden;">
+                <div class="card" style="width: 100%;height: 100%;">
+                  <div class="card-body p-0">
+                    <div class="row" style="height: 100%;background-color: lightgrey;">
+                      <div class="col-md-3 d-flex justify-content-center align-items-center" *ngFor="let user of localusers" style="background-color: lightblue;">
+                        <div class="d-flex flex-column justify-content-evenly align-items-center">
+                          <img src="https://www.w3schools.com/howto/img_avatar.png" class="rounded-circle img-fluid" style="width: 30%;border-radius:50%;"> 
+                          <span class="pt-2">{{user.login}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab label="Пригласить">
+              <div class="d-flex" style="height: 80%; overflow: hidden;">
+                <div class="card" style="width: 100%;height: 100%;">
+                  <div class="card-body p-0">
+                    <div class="row" style="height: 100%;background-color: lightgrey;">
+                      <div class="col-md-12 d-flex justify-content-evenly align-items-center flex-column">
+                        <input class="InputStyle" placeholder="ID гостя" [(ngModel)]="link" name="link" ngDefaultControl style="font-family:Arial, FontAwesome;text-align: center;" type="text">
+                        <button [disabled]="!link" type="button" class="btn btn-lg" style="background-color: #FFA500;color:white" (click)="invite(link)">Пригласить</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div> -->
+      </div>
+    </mat-form-field>
+  </div>
+</div>

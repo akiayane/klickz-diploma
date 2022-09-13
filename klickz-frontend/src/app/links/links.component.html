@@ -1,0 +1,363 @@
+  <div class="main">
+    <!-- <div class="row">
+        <div class="col-md-12" *ngIf="links">
+            <div class="d-flex justify-content-center align-items-center activity">
+                <div><span class="activity-done">Количество ссылок: {{links.length}}</span></div>
+            </div>
+            <div class="mt-3">
+                <ul class="list list-inline">
+                    <li class="d-flex justify-content-between"  *ngFor="let link of links" (click)="openDialog(link)">
+                        <div class="d-flex flex-row align-items-center">
+                            <div class="ml-2">
+                                <div class="d-flex flex-column mt-1 text-black-50 date-time">
+                                    <div><h2 class="mb-0 text-dark">{{link.name}}</h2></div>
+                                    <div class="ml-3"><i class="fa fa-clock-o"></i><span class="ml-2">{{link.address}}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row align-items-center">
+                            <div class="d-flex flex-column mr-2">
+                                <div><span class="date-time">{{link.createdTime}}</span></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-12" *ngIf="!links">
+            <h1>Нет ссылок</h1>
+        </div>
+    </div> -->
+
+    <div class="content">
+        <div style="width: 40%;display: flex;flex-direction: column;min-width: 40rem;">
+          <div style="background: transparent;">
+            <div style="height: 100%;display: flex;justify-content: space-between;padding: 1rem;align-items: center;background-color: white;border-radius: 0.75rem;">
+              <input type="search"  [(ngModel)]="search" class="form-control" placeholder="Поиск" style="width: 50%;height: 100%;border: 0.05rem solid black;">
+              
+              <mat-form-field id="tags" appearance="fill">
+                <mat-label>Tags</mat-label>
+                <mat-select [formControl]="toppings" multiple [disabled]="tags.length==0" (selectionChange)="applyTags($event.value)">
+                  <mat-option *ngFor="let topping of tags" [value]="topping">{{topping}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <div style="display: flex;flex-direction:column;justify-content: center;align-items: center;">
+                <mat-icon *ngIf="active">visibility</mat-icon>
+                <mat-icon *ngIf="!active">visibility_off</mat-icon>
+                <mat-slide-toggle [(ngModel)]="active"></mat-slide-toggle>
+              </div>
+
+
+            </div>
+            
+          </div>
+          <div style="overflow-y: scroll;flex: 1;" class="linksholder">
+            <div class="container" style="max-width: none;">
+              <div class="row">
+                  <div class="col-md-12 p-0" style="overflow-x: hidden;">
+                    <ul [ngClass]="[active ? '' : 'hide']" class="active list list-inline m-0"><!--25 May 2020 12:34 AM -->
+                      <li *ngFor="let link of (linksDisplay | filter:search); let i = index" class="active link-boundary" style="position: relative;display: flex;border: none;">
+                        <div class="d-flex justify-content-between" cdkDragBoundary=".link-boundary" cdkDragLockAxis="x" cdkDrag style="padding: 1rem;height: 100%;background-color: white;width: 91%;z-index: 2;border-radius: 0.75rem;" >
+                          <div class="d-flex flex-row align-items-center" style="width: 40%;">
+                            
+                              <div class="ml-2" style="white-space: nowrap;overflow: hidden;">
+                                  <h2 class="mb-0" *ngIf="link.displayName != ''" (click)="openDialog(link)" style="cursor:pointer ;">{{link.displayName}}</h2>
+                                  <h2 class="mb-0" *ngIf="link.displayName == ''" (click)="openDialog(link)" style="cursor:pointer ;">{{link.name}}</h2>
+                                  <p class="mb-0" style="width: 100%;">{{link.address}}</p>
+                                  <div class="d-flex flex-row mt-1 text-black-50 date-time pb-1">
+                                      <div><i class="fa fa-calendar-o"></i><span class="ml-2">{{format(link.createdTime)}}</span></div>
+                                  </div>
+                                  <a href="https://klic.kz/l/{{link.name}}" target="_blank" (click)="$event.stopPropagation()">
+                                    <mat-icon>open_in_new</mat-icon>
+                                  </a>
+                              </div>
+                          </div>
+                          <!-- <div class="d-flex flex-row align-items-center">
+                              <div class="d-flex flex-column mr-2">
+                                  <div class="profile-image"><img class="rounded-circle" src="https://i.imgur.com/xbxOs06.jpg" width="30"><img class="rounded-circle" src="https://i.imgur.com/wwd9uNI.jpg" width="30"></div>
+                                  <span class="date-time">12/5/2020 12:55</span>
+                              </div><i class="fa fa-ellipsis-h"></i>
+                          </div> -->
+                          <svg id="graph{{i}}" class="smallGraph"></svg>
+                        </div>
+
+                        <button class="btn" style="position: absolute;height: 100%;background-color: lightcoral;width: 10%;z-index: 1;border: none;border-radius: 0.25rem 0rem 0rem 0.25rem;" (click)="disablelink(link, i)">
+                          <mat-icon>delete_outline</mat-icon>
+                        </button>
+                        
+                        
+                        <!--  
+                            <ngx-skeleton-loader
+                            
+                              count="1"
+                              appearance="line"
+                              animation="progress"
+                              [theme]="{
+                                'background-color': '#fbfaf51a',
+                                height: '100%',
+                                'border-radius': 0
+                              }"
+                            ></ngx-skeleton-loader> -->
+                      </li>
+                    </ul>
+
+                    
+                    
+                    <ul [ngClass]="[!active ? '' : 'hide']" class="inactive list list-inline m-0"><!--25 May 2020 12:34 AM-->
+                      <li *ngFor="let link of (disabledlinksDisplay | filter:search); let i = index" class="inactive link-boundary" style="position: relative;display: flex;border: none;">
+                        
+                        <div class="d-flex justify-content-between"  cdkDragBoundary=".link-boundary" cdkDragLockAxis="x" cdkDrag style="padding: 1rem;height: 100%;background-color: lightgrey;width: 91%;z-index: 2;border-radius: 0.75rem;">
+                          <div class="d-flex flex-row align-items-center" style="width: 40%;">
+                            
+                              <div class="ml-2" style="white-space: nowrap;overflow: hidden;">
+                                <h2 class="mb-0" *ngIf="link.displayName != ''" (click)="openDialog(link)" style="cursor:pointer ;">{{link.displayName}}</h2>
+                                <h2 class="mb-0" *ngIf="link.displayName == ''">{{link.name}}</h2>
+                                  <p class="mb-0" style="width: 100%;">{{link.address}}</p>
+                                  <div class="d-flex flex-row mt-1 text-black-50 date-time">
+                                      <div><i class="fa fa-calendar-o"></i><span class="ml-2">{{format(link.createdTime)}}</span></div>
+                                  </div>
+                                  <!-- <a href="https://klic.kz/l/{{link.name}}" target="_blank" (click)="$event.stopPropagation()">btn</a> -->
+                              </div>
+                          </div>
+                        </div>
+                        
+
+                        <button class="btn" style="position: absolute;height: 100%;background-color: lightgreen;width: 10%;z-index: 1;border: none;border-radius: 0.25rem 0rem 0rem 0.25rem;" (click)="restorelink(link, i)">
+                          <mat-icon>playlist_add</mat-icon>
+                        </button>
+                      </li>
+                    </ul> 
+            
+
+                  </div>
+              </div>
+          </div>
+          </div>
+        </div>
+        <div style="width: 60%; display: flex;flex-direction: column;min-width: 60rem;">
+          <div style="height: 50%; background-color: white;border-radius: 0.75rem; margin: 0rem 0rem 0.5rem 0.5rem;">
+            <canvas id="linechart"></canvas>
+          </div>
+          <div style="height: 50%;border-radius: 0.75rem;  margin: 0rem 0rem 0rem 0.5rem;display: flex;justify-content: space-between;">
+            <div style="background-color: white;border-radius: 0.75rem;height: auto;width: 49.5%;overflow: hidden;">
+              <div #doughnut style="width: 170%;height: 100%;display: flex;position: relative;" class="graph-boundary">
+                <div style="width: 59%;height: 100%;padding: 5%;" >
+                  <canvas id="doughnut"></canvas>
+                </div>
+                <div style="width: 59%;height: 100%;display: flex;position: absolute;padding-left: 13%;" cdkDragBoundary=".graph-boundary" cdkDragLockAxis="x" cdkDrag [cdkDragFreeDragPosition]="dragPosition">
+                  <div style="height: 100%;display:flex;flex-direction:column;justify-content:space-evenly;">
+                    <button class="btn bookmark">
+                      <mat-icon> notes</mat-icon>
+                    </button>
+                    <div></div>
+                  </div>
+                  <div style="width: 100%;height: 100%;position: relative;display: flex;background-color: rgba(213, 239, 247, 0.9);padding: 5%;">
+                    <table style="width: 100%;height: 100%;">
+                      <thead>
+                        <tr>
+                          <td><b>Ссылка</b></td>
+                          <td><b>Переходы</b></td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let tmp of linksId; index as i">
+                          <td>{{tmp}}</td>
+                          <td style="text-align: center;">{{this.linksNum[i]}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- <div style="width: 100%;height:100%;filter: blur(8px);-webkit-filter: blur(8px);z-index: 1;position: absolute;background-color: rgba(255, 255, 255,0.5);">
+
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div style="background-color: white;border-radius: 0.75rem;height: auto;width: 49.5%;overflow: hidden;">
+              <div #doughnut style="width: 170%;height: 100%;display: flex;position: relative;" class="graph-boundary">
+                <div style="width: 59%;height: 100%;padding: 5%;" >
+                  <canvas id="doughnut24"></canvas>
+                </div>
+                <div style="width: 59%;height: 100%;display: flex;position: absolute;padding-left: 13%;" cdkDragBoundary=".graph-boundary" cdkDragLockAxis="x" cdkDrag [cdkDragFreeDragPosition]="dragPosition">
+                  <div style="height: 100%;display:flex;flex-direction:column;justify-content:space-evenly;">
+                    <button class="btn bookmark">
+                      <mat-icon> notes</mat-icon>
+                    </button>
+                    <div></div>
+                  </div>
+                  <div style="width: 100%;height: 100%;position: relative;display: flex;background-color: rgba(213, 239, 247, 0.9);padding: 5%;">
+                    <table style="width: 100%;height: 100%;">
+                      <thead>
+                        <tr>
+                          <td><b>Ссылка</b></td>
+                          <td><b>Переходы</b></td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let tmp of data24; index as i">
+                          
+                          <td *ngIf="tmp!=0">{{this.label24[i]}}</td>
+                          <td *ngIf="tmp!=0">{{tmp}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- <div style="width: 100%;height:100%;filter: blur(8px);-webkit-filter: blur(8px);z-index: 1;position: absolute;background-color: rgba(255, 255, 255,0.5);">
+
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+              
+              
+              
+
+              <!-- <div *ngIf="visible" [@slideInOut] style="width: 100%;height:100%;background:rgba(255, 255, 255, 0.7);position:absolute;top:0;left:0;border-radius: 0.75rem;border: 0.1rem solid lightblue;">
+                
+                <div  cdkDragBoundary=".link-boundary" cdkDragLockAxis="x" cdkDrag>
+
+                </div>
+              </div> -->
+            </div>
+
+          </div>
+        </div>
+    </div>
+
+  </div>
+
+
+
+<!--
+
+  OLD CODE
+
+
+  <div class="panel-holder ps-5 pe-3" style="width: 60%;height: 90vh;">
+          <div class="panel" style="min-height: 85vh;">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-5 text-right">
+                  <mat-paginator [length]="length" [pageSize]="pageSize" (page)="pageEvent = $event" (click)="do()">
+                  </mat-paginator>
+                </div>
+                <div class="col-7 text-right">
+                  <div class="btn_group">
+                    <input type="search"  [(ngModel)]="search" class="form-control" placeholder="Поиск" >
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="panel-body table-responsive">
+              <table class="table" [ngClass]="[isLoaded && search=='' ? 'show' : 'notshow']">
+                <thead>
+                  <tr>
+                    <th>Код</th>
+                    <th>Адрес</th>
+                    <th>Время создания</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let link of (linksDisplay | filter:search)" class="eq">
+                  <tr *ngIf="link.name!=null" (click)="openDialog(link)">
+                    <td>{{link.name}}</td>
+                    <td>{{link.address}}</td>
+                    <td>{{format(link.createdTime)}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <table class="table" [ngClass]="[isLoaded && search!='' ? 'show' : 'notshow']">
+                <thead>
+                  <tr>
+                    <th>Код</th>
+                    <th>Адрес</th>
+                    <th>Время создания</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let link of (links | filter:search)" class="eq">
+                  <tr *ngIf="link.name!=null" (click)="openDialog(link)">
+                    
+                    <td>{{link.name}}</td>
+                    <td>{{link.address}}</td>
+                    <td>{{format(link.createdTime)}}</td>
+                  </tr>
+                </tbody>
+                <tbody *ngIf="(links | filter:search).length < 1" class="eq">
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              
+              <ngx-skeleton-loader
+              
+              *ngIf="!isLoaded"
+                count="1"
+                appearance="line"
+                animation="progress"
+                [theme]="{
+                  'background-color': '#fbfaf51a',
+                  height: '100%',
+                  'border-radius': 0
+                }"
+              ></ngx-skeleton-loader>
+              
+            </div>
+          </div>
+        </div>
+        <div class="graph-holder ps-1 pe-5">
+
+            <div class="panel-holder container-fluid p-0" style="height: 43.5;">
+                <div class="panel">
+                    <div class="panel-body table-responsive d-flex flex-row justify-content-between">
+                      <table class="table details" [ngClass]="[isLoadedPie ? '' : 'notshow']">
+                        <thead>
+                            <tr>
+                              <th>№</th>
+                              <th>Переходы</th>
+                            </tr>
+                        </thead>
+            
+                        <tbody *ngFor="let link of linksNumDisplay; index as i">
+                          <tr *ngIf="link!=0">
+                            <td>{{i+1}}</td>
+                            <td>{{link}}</td>
+                          </tr>
+                          <tr *ngIf="link==0">
+                            <td>{{i+1}}</td>
+                            <td>0</td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <div [ngClass]="[isLoadedPie ? '' : 'notshow']" class="chartHolder" style="width: 50%;">
+                          <canvas id="doughnut"></canvas>
+                      </div>
+
+                      <div [ngClass]="[!isLoadedPie ? '' : 'notshow']" class="spinner">
+                        <mat-spinner></mat-spinner>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-holder container-fluid p-0"  style="height: 43.5vh;">
+                <div class="panel">
+                  <div [ngClass]="[isLoadedLine ? '' : 'notshow']" class="chartHolder p-3"  style="width: 100%; height: 100%;">
+                    <canvas id="linechart"></canvas>
+                  </div>
+
+                  <div [ngClass]="[!isLoadedLine  ? '' : 'notshow']" class="spinner">
+                    <mat-progress-bar isLoadedLine="indeterminate"></mat-progress-bar>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+-->
